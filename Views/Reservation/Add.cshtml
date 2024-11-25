@@ -12,6 +12,11 @@
     <input type="hidden" asp-for="Reservation.RestaurantId" />
 
     <div class="mb-3">
+        <label asp-for="Reservation.RestaurantName" class="form-label"></label>
+        <input asp-for="Reservation.RestaurantName" type="text" class="form-control" disabled />
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Reservation.date" class="form-label"></label>
         <input asp-for="Reservation.date" type="datetime-local" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-ddTHH:mm")" />
         <span asp-validation-for="Reservation.date" class="text-danger"></span>

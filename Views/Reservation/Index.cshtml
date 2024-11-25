@@ -9,34 +9,45 @@
 {
     <p>No results</p>
 }
-
 else
 {
-    <table class="table table-condensed table-bordered">
-        <tr>
-            <th>
-                Booked Restaurant
-            </th>
-            <th>
-                Date and Time
-            </th>
-            <th>
-                Actions
-            </th>
-        </tr>
-
-        @foreach (var reservation in Model.Reservations)
+    @foreach (var reservationFilter in Model.Reservations)
+    {
+        @if (Model.Restaurants.Contains(reservationFilter.RestaurantId.ToString()))
         {
-            <tr>
-                <td>@reservation.RestaurantName</td>
-                <td>@reservation.date.ToLocalTime()</td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@reservation.Id.ToString()">Edit</a>
-                    <a asp-action="Delete" asp-route-id="@reservation.Id.ToString()">Delete</a>
-                </td>
-            </tr>
+            continue;
         }
+        Model.Restaurants.Add(reservationFilter.RestaurantId.ToString());
 
-    </table>
+        <h1>@reservationFilter.RestaurantName</h1>
+        <table class="table table-condensed table-bordered">
+            <tr>
+                <th>
+                    Date and Time
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
 
+            @foreach (var reservation in Model.Reservations)
+            {
+                @if (reservation.RestaurantId == reservationFilter.RestaurantId)
+                {
+                    <tr>
+                        <td>@reservation.date.ToLocalTime()</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@reservation.Id.ToString()">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@reservation.Id.ToString()">Delete</a>
+                        </td>
+                    </tr>
+                }
+            }
+
+        </table>
+
+        <a asp-controller="Reservation" asp-action="Add" asp-route-restaurantId="@reservationFilter.RestaurantId.ToString()">Reserve</a>
+        <hr>
+
+    }
 }

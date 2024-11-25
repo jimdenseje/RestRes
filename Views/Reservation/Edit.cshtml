@@ -8,6 +8,11 @@
     <input type="hidden" asp-for="Id" />
 
     <div class="mb-3">
+        <label asp-for="RestaurantName" class="form-label"></label>
+        <input asp-for="RestaurantName" type="text" class="form-control" disabled />
+    </div>
+
+    <div class="mb-3">
         <label asp-for="date" class="form-label"></label>
         <input asp-for="date" value="@Model.date.ToLocalTime().ToString("yyyy-MM-ddTHH:mm")" class="form-control" />
         <span asp-validation-for="date" class="text-danger" />
