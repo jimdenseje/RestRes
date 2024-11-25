@@ -12,6 +12,11 @@
     <input type="hidden" asp-for="Reservation.RestaurantId" />
 
     <div class="mb-3">
+        <label asp-for="Reservation.RestaurantId" class="form-label"></label>
+        <input asp-for="Reservation.RestaurantId" type="text" class="form-control" disabled />
+    </div>
+
+    <div class="mb-3">
         <label asp-for="Reservation.RestaurantName" class="form-label"></label>
         <input asp-for="Reservation.RestaurantName" type="text" class="form-control" disabled />
     </div>

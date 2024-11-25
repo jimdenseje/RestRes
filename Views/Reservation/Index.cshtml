@@ -19,7 +19,11 @@ else
         }
         Model.Restaurants.Add(reservationFilter.RestaurantId.ToString());
 
-        <h1>@reservationFilter.RestaurantName</h1>
+        <div class="mb-3">
+            <label asp-for="@reservationFilter.RestaurantName" class="form-label"></label>
+            <input asp-for="@reservationFilter.RestaurantName" type="text" class="form-control" disabled />
+        </div>
+
         <table class="table table-condensed table-bordered">
             <tr>
                 <th>
@@ -46,8 +50,7 @@ else
 
         </table>
 
-        <a asp-controller="Reservation" asp-action="Add" asp-route-restaurantId="@reservationFilter.RestaurantId.ToString()">Reserve</a>
-        <hr>
+        <a class="btn btn-primary" asp-controller="Reservation" asp-action="Add" asp-route-restaurantId="@reservationFilter.RestaurantId.ToString()">Add new reservation for Restaurant : @reservationFilter.RestaurantName</a>
 
     }
 }
